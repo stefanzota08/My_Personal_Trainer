@@ -1,0 +1,7 @@
+{
+  "name": "MyFitnessTrainer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
