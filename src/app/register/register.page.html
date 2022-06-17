@@ -1,0 +1,53 @@
+<ion-content>
+  <ion-grid class="register-wrapper">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <span class="register-header ion-text-center">Create an account</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" style="padding: none" class="ion-text-center">
+        <span class="register-subheader ion-text-center">
+          First some general info
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1.5rem">
+      <ion-col size="12">
+        <ion-input placeholder="First Name"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem">
+      <ion-col size="12">
+        <ion-input placeholder="Last Name"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem">
+      <ion-col size="12">
+        <ion-input placeholder="Email"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1.5rem">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button
+          class="register-button"
+          color="primary"
+          routerLink="/choose-password"
+          >NEXT</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem">
+      <ion-col class="ion-text-center">
+        <span class="go-to-login">Already have an account?</span>
+        <span class="login-btn" routerLink="/login">Login</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
