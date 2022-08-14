@@ -1,0 +1,32 @@
+.done-wrapper {
+  margin-top: 50vh;
+  transform: translate(0, -50%);
+}
+
+.done-header {
+  font-family: Teko-Light;
+  font-weight: 100;
+  font-size: 64px;
+  color: #005b74;
+}
+
+.done-subheader {
+  font-family: Roboto-Light;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.done-button {
+  position: absolute;
+  display: flex;
+  text-align: end;
+  height: 10rem;
+  font-family: Teko-Light;
+  font-size: 35px;
+  width: 100%;
+  bottom: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  --border-radius: 0px !important;
+  letter-spacing: 0 !important;
+}

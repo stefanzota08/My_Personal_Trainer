@@ -1,0 +1,57 @@
+// .login-wrapper {
+//   background: #f6f6f6;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 10px;
+//   margin-top: 50vh;
+//   transform: translate(0, -50%);
+//   padding: 1.5rem;
+// }
+
+.login-header {
+  font-family: Teko-Light;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  color: #efefef;
+}
+
+.login-button {
+  height: 3rem;
+  font-family: Roboto-Medium;
+  font-size: 16px;
+  --border-radius: 1rem;
+  margin-top: 15rem;
+}
+
+.go-to-sign-up {
+  font-family: Roboto-Light;
+  color: #828282;
+  font-size: 14px;
+  bottom: 0;
+}
+
+.sign-up-btn {
+  font-family: Roboto-Bold;
+  color: #efefef;
+  font-size: 14px;
+  margin-left: 0.3rem;
+}
+
+ion-content {
+  --ion-background-color: #005b74;
+}
+
+ion-grid {
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+ion-item {
+  border-bottom: 1px solid #828282 !important;
+  &.ion-invalid.ion-touched.ion-dirty {
+    border-bottom: 1px solid red !important;
+  }
+  &.item-has-focus {
+    border-bottom: 1px solid #efefef !important;
+  }
+}

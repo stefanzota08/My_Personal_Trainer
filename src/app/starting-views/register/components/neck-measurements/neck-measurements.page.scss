@@ -1,0 +1,32 @@
+.neck-header {
+  font-family: Teko-Light;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  color: #efefef;
+  line-height: 40px;
+  text-transform: uppercase;
+  padding-top: 1rem;
+}
+
+.neck-button {
+  height: 3rem;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  --border-radius: 1rem;
+  margin: 0 1rem;
+}
+
+.small-text {
+  font-family: Roboto-Light;
+  font-size: 16px;
+  color: #005b74;
+}
+
+ion-grid {
+  padding: 1rem 1rem;
+}
+
+ion-content {
+  --ion-background-color: #efefef;
+}

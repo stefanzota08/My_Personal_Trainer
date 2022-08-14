@@ -1,0 +1,63 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end height-select-header">
+        <span>HEIGHT</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-end height-select-subheader">
+        <span>Please select your height</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="height-select-panel">
+      <ion-col size="6" class="ion-text-center">
+        <img
+          class="primary-image"
+          src="assets/images/femaleBlack.svg"
+          alt="femaleSilouette"
+          style="height: 40vh"
+        />
+      </ion-col>
+      <ion-col size="2" class="ion-text-center">
+        <img
+          class="primary-image"
+          src="assets/images/rulerBlack.svg"
+          alt="ruler"
+          style="height: 40vh"
+        />
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+        <div style="height: 38vh">
+          <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div class="value-panel">
+      <ion-row style="display: flex">
+        <ion-col size="12" class="ion-text-center">
+          <span class="height-label">Your height: </span>
+          <span class="height-value">{{value + 'cm'}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 1rem">
+        <ion-col size="12" class="ion-text-center">
+          <ion-button
+            class="height-select-button"
+            color="primary"
+            expand="block"
+            routerLink="/weight-select"
+            >NEXT</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

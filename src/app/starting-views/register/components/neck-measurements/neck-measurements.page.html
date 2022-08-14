@@ -1,0 +1,68 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end">
+        <span class="neck-header"
+          >Neck <br />
+          circumference</span
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 15vh">
+      <ion-col size="12" class="ion-text-center">
+        <img
+          class="primary-image"
+          src="assets/images/measure-neck.svg"
+          alt="measure-neck"
+          style="height: 20vh"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 2rem">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">e.g. 32.5 cm</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-radio-group style="display: flex; justify-content: space-evenly">
+          <ion-item lines="none">
+            <ion-radio value="kg"></ion-radio>
+            <ion-label style="margin-left: 0.3rem">cm</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-radio value="pounds"></ion-radio>
+            <ion-label style="margin-left: 0.3rem">inches</ion-label>
+          </ion-item>
+        </ion-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button
+          class="neck-button"
+          color="primary"
+          expand="block"
+          routerLink="/waist-circumference"
+          >NEXT</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center small-text">
+        <span routerLink="/measurements-done">Skip this step</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

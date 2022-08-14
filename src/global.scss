@@ -70,3 +70,44 @@
   font-family: "RobotoCondensed-Bold";
   src: url("./assets/fonts/RobotoCondensed-Bold.ttf");
 }
+
+@font-face {
+  font-family: "Teko-Light";
+  src: url("./assets/fonts/Teko-Light.ttf");
+}
+
+@font-face {
+  font-family: "Teko-Regular";
+  src: url("./assets/fonts/Teko-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Teko-Medium";
+  src: url("./assets/fonts/Teko-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Teko-SemiBold";
+  src: url("./assets/fonts/Teko-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Teko-Bold";
+  src: url("./assets/fonts/Teko-Bold.ttf");
+}
+
+.primary-image {
+  filter: invert(14%) sepia(96%) saturate(2944%) hue-rotate(178deg)
+    brightness(102%) contrast(101%);
+}
+
+.input-error {
+  color: #eb445a;
+  font-size: 12px;
+  padding: 0rem 0.5rem;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+}

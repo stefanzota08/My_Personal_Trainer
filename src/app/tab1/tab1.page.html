@@ -5,5 +5,131 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Calories Circle -->
+  <ion-row>
+    <ion-col size="12" class="kcal-circle-wrapper">
+      <div class="current" [ngStyle]="getOverlayStyle(45)">
+        {{ currentKcal }}
+        <span style="font-size: 20px; margin-left: -0.5rem">kcal</span>
+      </div>
+      <round-progress
+        class="kcal-circle"
+        [current]="currentKcal"
+        [max]="maxKcal"
+        [color]="color"
+        [background]="background"
+        [radius]="radius"
+        [stroke]="stroke"
+        [clockwise]="clockwise"
+        [responsive]="responsive"
+        [duration]="duration"
+        [animation]="animation"
+        [animationDelay]="animationDelay"
+      ></round-progress>
+    </ion-col>
+  </ion-row>
+
+  <!-- ///////////////////////////////////////// -->
+
+  <!-- Macronutrients Row -->
+  <ion-row style="padding: 0 0.5rem">
+    <!-- Protein Circle -->
+    <ion-col size="4">
+      <div class="current" [ngStyle]="getOverlayStyle(22)">
+        {{ currentProtein }}
+        <span style="font-size: 14px; margin-left: -0.3rem">g protein</span>
+      </div>
+      <round-progress
+        class="kcal-circle"
+        [current]="currentProtein"
+        [max]="maxProtein"
+        [color]="color"
+        [background]="background"
+        [radius]="radius"
+        [stroke]="strokeMacro"
+        [clockwise]="clockwise"
+        [responsive]="responsive"
+        [duration]="duration"
+        [animation]="animation"
+        [animationDelay]="animationDelay"
+      ></round-progress>
+    </ion-col>
+
+    <!-- Fats Circle -->
+    <ion-col size="4">
+      <div class="current" [ngStyle]="getOverlayStyle(22)">
+        {{ currentFats }}
+        <span style="font-size: 14px; margin-left: -0.3rem"
+          >g <br />
+          fats</span
+        >
+      </div>
+      <round-progress
+        class="kcal-circle"
+        [current]="currentFats"
+        [max]="maxFats"
+        [color]="color"
+        [background]="background"
+        [radius]="radius"
+        [stroke]="strokeMacro"
+        [clockwise]="clockwise"
+        [responsive]="responsive"
+        [duration]="duration"
+        [animation]="animation"
+        [animationDelay]="animationDelay"
+      ></round-progress>
+    </ion-col>
+
+    <!-- Carbs Circle -->
+    <ion-col size="4">
+      <div class="current" [ngStyle]="getOverlayStyle(22)">
+        {{ currentCarbs }}
+        <span style="font-size: 14px; margin-left: -0.3rem"
+          >g <br />
+          carbs</span
+        >
+      </div>
+      <round-progress
+        class="kcal-circle"
+        [current]="currentCarbs"
+        [max]="maxCarbs"
+        [color]="color"
+        [background]="background"
+        [radius]="radius"
+        [stroke]="strokeMacro"
+        [clockwise]="clockwise"
+        [responsive]="responsive"
+        [duration]="duration"
+        [animation]="animation"
+        [animationDelay]="animationDelay"
+      ></round-progress>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 2rem; padding: 0 0.5rem">
+    <ion-col size="12">
+      <div class="workout-panel">
+        <span class="workout-panel-header">Workouts:</span>
+        <span *ngIf="!workouts" class="no-workouts"> No workouts today</span>
+        <ion-button class="workout-panel-button" color="primary" expand="block"
+          >Workout now!</ion-button
+        >
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 1rem; padding: 0 0.5rem">
+    <ion-col size="12">
+      <div class="meals-panel">
+        <span class="meals-panel-header">What you ate today:</span>
+        <span *ngIf="!meals" class="no-meals"> No meals yet</span>
+        <ion-button class="meals-panel-button" color="primary" expand="block"
+          >Click to add meal</ion-button
+        >
+      </div>
+    </ion-col>
+  </ion-row>
+  <button style="margin: 1rem; padding: 1rem 2rem" (click)="logout()">
+    LOGOUT
+  </button>
 </ion-content>

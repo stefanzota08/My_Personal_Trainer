@@ -1,0 +1,69 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end weight-select-header">
+        <span>WEIGHT</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-end weight-select-subheader">
+        <span>It's time to add your weight</span>
+      </ion-col>
+    </ion-row>
+
+    <div class="weight-select-panel">
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <img
+            class="primary-image"
+            src="assets/images/scaleBlack.svg"
+            alt="femaleSilouette"
+            style="height: 20vh"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 5vh">
+        <ion-col size="12" class="ion-align-items-center">
+          <ion-item>
+            <ion-label position="floating">Your weight</ion-label>
+            <ion-input type="number" max="200"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12 " class="ion-text-center">
+          <ion-radio-group style="display: flex; justify-content: space-evenly">
+            <ion-item lines="none">
+              <ion-radio value="kg"></ion-radio>
+              <ion-label style="margin-left: 0.3rem">kg</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio value="pounds"></ion-radio>
+              <ion-label style="margin-left: 0.3rem">pounds</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="button-panel">
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button
+            class="weight-select-button"
+            color="primary"
+            expand="block"
+            routerLink="/fat-percentage"
+            >NEXT</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,111 @@
+ion-icon {
+  font-size: 200px;
+  color: #005b74;
+}
+
+.gender-select-wrapper {
+  margin-top: 50vh;
+  transform: translate(0, -50%);
+  z-index: 2;
+}
+
+.gender-select-header {
+  font-family: "Teko";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 72px;
+  color: #005b74;
+}
+
+.gender-select-subheader {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.gender-select-button {
+  height: 3rem;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  --border-radius: 1rem;
+  margin-top: 5rem;
+}
+
+.svg-waves-top,
+.svg-waves-bottom {
+  position: absolute;
+}
+
+.svg-waves-bottom {
+  bottom: 0px;
+}
+
+ion-content {
+  --ion-background-color: #efefef;
+}
+
+ion-radio {
+  display: none;
+}
+
+ion-grid {
+  margin-top: 5rem;
+  padding: 2rem;
+  position: absolute;
+}
+
+ion-toggle {
+  width: 100%;
+  height: 100px;
+  padding: 0 3rem;
+  --handle-height: 100px;
+  --handle-width: 100px;
+  --handle-border-radius: 50px;
+  --border-radius: 50px;
+  --background: #005b74;
+  --background-checked: #fff;
+
+  --handle-background: #fff url(/assets/icon/male-blue.png) no-repeat center /
+    50px;
+  --handle-background-checked: #005b74 url(/assets/icon/female-white.png)
+    no-repeat center / 40px;
+}
+
+ion-toggle[aria-checked="false"] {
+  &::before {
+    position: absolute;
+    content: "MALE";
+    font-size: 20px;
+    line-height: 31px;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 11rem;
+    z-index: 2;
+    color: #fff;
+  }
+  &::after {
+    position: absolute;
+    content: "";
+  }
+}
+ion-toggle[aria-checked="true"] {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+  }
+  &::after {
+    position: absolute;
+    content: "FEMALE";
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 31px;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 5rem;
+    color: #005b74;
+  }
+}

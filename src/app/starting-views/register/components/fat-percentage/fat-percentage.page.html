@@ -1,0 +1,53 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end fat-select-header">
+        <span>FAT PERCENTAGE</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 20vh">
+      <ion-col size="12" class="ion-text-center">
+        <img
+          class="primary-image"
+          src="assets/images/percent.svg"
+          alt="percent"
+          style="height: 20vh"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem; margin-bottom: 0.5rem">
+      <ion-col size="12" class="ion-align-items-center">
+        <ion-item>
+          <ion-label position="floating"
+            >Your fat percentage (e.g. 17%)</ion-label
+          >
+          <ion-input type="number" max="200"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 3rem">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button
+          class="fat-select-button"
+          color="primary"
+          expand="block"
+          routerLink="/measurements-done"
+          >NEXT</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <span class="small-text" routerLink="/neck-measurements"
+          >I don't know it</span
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
