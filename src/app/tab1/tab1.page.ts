@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -9,17 +9,17 @@ import { AuthService } from '../services/auth.service';
 })
 export class Tab1Page {
   @Input() workouts = null;
-  currentKcal = 1769;
-  maxKcal = 2200;
+  currentKcal: number = 0;
+  totalKcal: number = 1;
 
-  currentProtein = 123;
-  maxProtein = 149;
+  currentProtein: number = 0;
+  totalProtein: number = 1;
 
-  currentFats = 50;
-  maxFats = 76;
+  currentFats: number = 0;
+  totalFats: number = 1;
 
-  currentCarbs = 120;
-  maxCarbs = 213;
+  currentCarbs: number = 0;
+  totalCarbs: number = 1;
 
   stroke = 9;
   strokeMacro = 12;
@@ -34,10 +34,17 @@ export class Tab1Page {
   animationDelay = 0;
   realCurrent = 0;
 
+  currentDate: string = null;
+
   constructor(
     private authService: AuthService,
     private readonly router: Router
   ) {}
+
+  ionViewWillEnter(): void {
+    this.getDietData();
+    this.getTodaysData();
+  }
 
   getOverlayStyle(textSize: number) {
     const transform = 'translateY(-50%) ' + 'translateX(-50%)';
@@ -53,6 +60,29 @@ export class Tab1Page {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
+
+  async getDietData() {
+    await this.authService.getDietData().then((data) => {
+      this.totalKcal = data.totalKcal;
+      this.totalProtein = data.totalProtein;
+      this.totalFats = data.totalFats;
+      this.totalCarbs = data.totalCarbs;
+    });
+  }
+
+  async getTodaysData() {
+    try {
+      await this.authService.getTodaysData().then((data) => {
+        this.currentKcal = data.totalKcal;
+        this.currentProtein = data.totalProtein;
+        this.currentFats = data.totalFats;
+        this.currentCarbs = data.totalCarbs;
+      });
+    } catch {
+      this.authService.instantCreateNewDayDocument();
+      this.getTodaysData();
+    }
   }
 }

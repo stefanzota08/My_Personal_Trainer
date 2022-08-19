@@ -19,8 +19,8 @@
       <ion-col size="6" class="ion-text-center">
         <img
           class="primary-image"
-          src="assets/images/femaleBlack.svg"
-          alt="femaleSilouette"
+          [src]="genderIsFemale ? 'assets/images/femaleBlack.svg' : 'assets/images/maleBlack.svg'"
+          alt="silouette"
           style="height: 40vh"
         />
       </ion-col>
@@ -33,8 +33,11 @@
         />
       </ion-col>
       <ion-col size="4" class="ion-text-center">
-        <div style="height: 38vh">
-          <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+        <div style="height: 38vh" class="height-slider">
+          <ngx-slider
+            [(value)]="selectedHeight"
+            [options]="options"
+          ></ngx-slider>
         </div>
       </ion-col>
     </ion-row>
@@ -43,7 +46,27 @@
       <ion-row style="display: flex">
         <ion-col size="12" class="ion-text-center">
           <span class="height-label">Your height: </span>
-          <span class="height-value">{{value + 'cm'}}</span>
+          <span class="height-value"
+            >{{ selectedHeight | convertUnit:selectedUnit}}</span
+          >
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-radio-group
+            [(ngModel)]="selectedUnit"
+            style="display: flex; justify-content: space-evenly"
+          >
+            <ion-item lines="none">
+              <ion-radio [value]="1"></ion-radio>
+              <ion-label style="margin-left: 0.3rem">cm</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio [value]="2"></ion-radio>
+              <ion-label style="margin-left: 0.3rem">feet</ion-label>
+            </ion-item>
+          </ion-radio-group>
         </ion-col>
       </ion-row>
 
@@ -53,7 +76,7 @@
             class="height-select-button"
             color="primary"
             expand="block"
-            routerLink="/weight-select"
+            (click)="setSelectedHeight()"
             >NEXT</ion-button
           >
         </ion-col>

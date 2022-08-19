@@ -1,6 +1,6 @@
 <ion-content>
   <ion-grid>
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" (ngSubmit)="sendRegisterInfo()">
       <ion-row>
         <ion-col size="12">
           <span class="register-header">Create an account</span>
@@ -22,6 +22,11 @@
               class="light-text"
             ></ion-input>
           </ion-item>
+          <span
+            class="input-error"
+            *ngIf="firstName.dirty && firstName.touched && firstName.errors"
+            >*This field is required</span
+          >
         </ion-col>
       </ion-row>
 
@@ -34,6 +39,11 @@
               class="light-text"
             ></ion-input>
           </ion-item>
+          <span
+            class="input-error"
+            *ngIf="lastName.dirty && lastName.touched && lastName.errors"
+            >*This field is required</span
+          >
         </ion-col>
       </ion-row>
 
@@ -43,16 +53,22 @@
             <ion-label position="floating">Email</ion-label>
             <ion-input formControlName="email" class="light-text"></ion-input>
           </ion-item>
+          <span
+            class="input-error"
+            *ngIf="email.dirty && email.touched && email.errors"
+            >*Invalid email</span
+          >
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="12" class="ion-text-center">
           <ion-button
+            type="submit"
             class="register-button"
             color="light"
             expand="block"
-            routerLink="/choose-password"
+            [disabled]="!registerForm.valid"
             >NEXT</ion-button
           >
         </ion-col>

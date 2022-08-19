@@ -12,8 +12,6 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 
-import { Auth } from '@angular/fire/auth';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

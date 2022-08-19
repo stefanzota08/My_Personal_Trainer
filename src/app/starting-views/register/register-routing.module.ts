@@ -1,14 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ChoosePasswordPage } from './components/choose-password/choose-password.page';
-import { FatPercentagePage } from './components/fat-percentage/fat-percentage.page';
-import { GenderSelectPage } from './components/gender-select/gender-select.page';
-import { HeightSelectPage } from './components/height-select/height-select.page';
-import { MeasurementsDonePage } from './components/measurements-done/measurements-done.page';
-import { NeckMeasurementsPage } from './components/neck-measurements/neck-measurements.page';
-import { SignUpPage } from './components/sign-up-page/sign-up.page';
-import { WaistCircumferencePage } from './components/waist-circumference/waist-circumference.page';
-import { WeightSelectPage } from './components/weight-select/weight-select.page';
 
 import { RegisterPage } from './register.page';
 
@@ -17,11 +8,6 @@ const routes: Routes = [
     path: '',
     component: RegisterPage,
     children: [
-      {
-        path: '',
-        redirectTo: 'sign-up',
-        pathMatch: 'full',
-      },
       {
         path: 'sign-up',
         loadChildren: () =>
@@ -58,6 +44,27 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'age-select',
+        loadChildren: () =>
+          import('./components/age-select/age-select.module').then(
+            (m) => m.AgeSelectPageModule
+          ),
+      },
+      {
+        path: 'active-level-select',
+        loadChildren: () =>
+          import(
+            './components/active-level-select/active-level-select.module'
+          ).then((m) => m.ActiveLevelSelectPageModule),
+      },
+      {
+        path: 'goal-select',
+        loadChildren: () =>
+          import('./components/goal-select/goal-select.module').then(
+            (m) => m.GoalSelectPageModule
+          ),
+      },
+      {
         path: 'fat-percentage',
         loadChildren: () =>
           import('./components/fat-percentage/fat-percentage.module').then(
@@ -85,7 +92,52 @@ const routes: Routes = [
             './components/waist-circumference/waist-circumference.module'
           ).then((m) => m.WaistCircumferencePageModule),
       },
+      {
+        path: 'hip-measurements',
+        loadChildren: () =>
+          import('./components/hip-measurements/hip-measurements.module').then(
+            (m) => m.HipMeasurementsPageModule
+          ),
+      },
+      {
+        path: '',
+        redirectTo: 'sign-up',
+        pathMatch: 'full',
+      },
     ],
+  },
+  {
+    path: '',
+    redirectTo: 'sign-up',
+    pathMatch: 'full',
+  },
+  {
+    path: 'hip-measurements',
+    loadChildren: () =>
+      import('./components/hip-measurements/hip-measurements.module').then(
+        (m) => m.HipMeasurementsPageModule
+      ),
+  },
+  {
+    path: 'age-select',
+    loadChildren: () =>
+      import('./components/age-select/age-select.module').then(
+        (m) => m.AgeSelectPageModule
+      ),
+  },
+  {
+    path: 'goal-select',
+    loadChildren: () =>
+      import('./components/goal-select/goal-select.module').then(
+        (m) => m.GoalSelectPageModule
+      ),
+  },
+  {
+    path: 'active-level-select',
+    loadChildren: () =>
+      import(
+        './components/active-level-select/active-level-select.module'
+      ).then((m) => m.ActiveLevelSelectPageModule),
   },
 ];
 

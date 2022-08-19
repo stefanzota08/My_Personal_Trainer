@@ -1,0 +1,61 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end goal-select-header">
+        <span>GOAL</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-end goal-select-subheader">
+        <span>What's your main goal?</span>
+      </ion-col>
+    </ion-row>
+
+    <div class="goal-select-panel">
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <img
+            class="primary-image"
+            src="assets/images/goal.svg"
+            alt="femaleSilouette"
+            style="height: 30vh"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 5vh">
+        <ion-col size="12" class="ion-align-items-center">
+          <ion-item>
+            <ion-label>My goal is to</ion-label>
+            <ion-select [(ngModel)]="selectedGoal">
+              <ion-select-option [value]="0"
+                >maintain my weight</ion-select-option
+              >
+              <ion-select-option [value]="1">gain weight</ion-select-option>
+              <ion-select-option [value]="-1">lose weight</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="button-panel">
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button
+            class="goal-select-button"
+            color="primary"
+            expand="block"
+            (click)="setSelectedGoal()"
+            [disabled]="selectedGoal === null"
+            >NEXT</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

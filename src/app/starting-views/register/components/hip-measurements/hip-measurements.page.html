@@ -1,0 +1,75 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end">
+        <span class="hip-header"
+          >hip <br />
+          circumference</span
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 10vh">
+      <ion-col size="12" class="ion-text-center">
+        <img
+          class="primary-image"
+          src="assets/images/female-hip.svg"
+          alt="measure-hip"
+          style="height: 30vh"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 2rem">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating"
+            >{{"e.g. " + (selectedUnit === 1 ? "32.5 cm" : "12.7
+            inch")}}</ion-label
+          >
+          <ion-input [(ngModel)]="hipCircumference" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-radio-group
+          [(ngModel)]="selectedUnit"
+          style="display: flex; justify-content: space-evenly"
+        >
+          <ion-item lines="none">
+            <ion-radio [value]="1"></ion-radio>
+            <ion-label style="margin-left: 0.3rem">cm</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-radio [value]="2"></ion-radio>
+            <ion-label style="margin-left: 0.3rem">inches</ion-label>
+          </ion-item>
+        </ion-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 1rem">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button
+          class="hip-button"
+          color="primary"
+          expand="block"
+          (click)="setHipMeasurements()"
+          [disabled]="!hipCircumference"
+          >NEXT</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center small-text">
+        <span routerLink="../measurements-done">Skip this step</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

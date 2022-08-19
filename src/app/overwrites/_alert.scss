@@ -1,0 +1,27 @@
+.alert-wrapper {
+  border-radius: 1rem !important;
+  padding: 1rem !important;
+}
+
+.alert-input-group {
+  padding-top: 0px !important;
+}
+
+.alert-button-group {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.alert-button {
+  background-color: #005b74 !important;
+  width: 100% !important;
+  border-radius: 1rem !important;
+  margin: 0 !important;
+}
+
+.alert-button-inner {
+  justify-content: center !important;
+  color: #efefef !important;
+  font-family: Roboto-Regular !important;
+  text-transform: capitalize !important;
+}

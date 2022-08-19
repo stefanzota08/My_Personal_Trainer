@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
-import { ChoosePasswordPage } from './components/choose-password/choose-password.page';
-import { SignUpPage } from './components/sign-up-page/sign-up.page';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -17,6 +16,7 @@ import { SignUpPage } from './components/sign-up-page/sign-up.page';
     IonicModule,
     ReactiveFormsModule,
     RegisterPageRoutingModule,
+    RouterModule,
   ],
   declarations: [RegisterPage],
 })

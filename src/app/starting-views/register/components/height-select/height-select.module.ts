@@ -9,6 +9,7 @@ import { HeightSelectPageRoutingModule } from './height-select-routing.module';
 import { HeightSelectPage } from './height-select.page';
 import { BackgroundCurvesComponentModule } from 'src/app/shared/background-curves/background-curves.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ConvertUnitPipeModule } from 'src/app/pipes/convert-unit.pipe';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     HeightSelectPageRoutingModule,
     BackgroundCurvesComponentModule,
     NgxSliderModule,
+    ConvertUnitPipeModule,
   ],
   declarations: [HeightSelectPage],
 })

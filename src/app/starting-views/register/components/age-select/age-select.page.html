@@ -1,0 +1,79 @@
+<ion-content>
+  <!-- Background Curves -->
+  <app-background-curves></app-background-curves>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-end age-select-header">
+        <span>AGE</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-end age-select-subheader">
+        <span>How old are you?</span>
+      </ion-col>
+    </ion-row>
+
+    <div class="age-select-panel">
+      <!-- svg row -->
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <img
+            class="primary-image"
+            [src]="selectedAge < 5 ? 'assets/images/infant.svg' : selectedAge < 11 ? 'assets/images/baby.svg' : selectedAge < 18 ? 'assets/images/kid.svg' : selectedAge < 30 ? 'assets/images/student.svg' : selectedAge < 60 ? 'assets/images/adult.svg' : 'assets/images/old.svg'"
+            alt="silouette"
+            style="height: 30vh"
+          />
+        </ion-col>
+      </ion-row>
+
+      <!-- grid row -->
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <img
+            class="primary-image"
+            src="assets/images/age-scale.svg"
+            alt="ruler"
+          />
+        </ion-col>
+      </ion-row>
+
+      <!-- arrow row -->
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <div style="height: 28vh; width: 100%">
+            <ngx-slider
+              [(value)]="selectedAge"
+              [options]="options"
+            ></ngx-slider>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="value-panel">
+      <ion-row style="display: flex">
+        <ion-col size="12" class="ion-text-center">
+          <span class="age-label">I am</span>
+          <span class="age-value"
+            >{{' ' + (selectedAge | convertUnit:selectedUnit) + ' '}}</span
+          >
+          <span class="age-label">years old</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 1rem">
+        <ion-col size="12" class="ion-text-center">
+          <ion-button
+            class="age-select-button"
+            color="primary"
+            expand="block"
+            (click)="setSelectedAge()"
+            >NEXT</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

@@ -25,3 +25,7 @@ ion-item {
   --background: none;
   opacity: 1;
 }
+
+.item-interactive.ion-valid {
+  --highlight-background: #005b74;
+}

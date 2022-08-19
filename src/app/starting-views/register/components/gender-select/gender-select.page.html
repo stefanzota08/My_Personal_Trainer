@@ -15,7 +15,7 @@
     </ion-row>
 
     <ion-row style="margin-top: 3rem">
-      <ion-toggle> </ion-toggle>
+      <ion-toggle [(ngModel)]="selectedGender"> </ion-toggle>
     </ion-row>
 
     <ion-row>
@@ -25,6 +25,7 @@
           color="primary"
           expand="block"
           routerLink="/height-select"
+          (click)="setSelectedGender()"
           >NEXT</ion-button
         >
       </ion-col>
