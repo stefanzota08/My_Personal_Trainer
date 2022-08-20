@@ -25,22 +25,29 @@ export class Tab3Page implements OnInit {
 
   async getFoodList() {
     this.foodList = await this.foodService.getFoodList();
-    console.log(this.foodList);
   }
 
   addMeal(item) {
     console.log(item);
-    this.authService.addMeal(item);
+    let itemValues = {
+      kcal: parseFloat(item.kcal) * (item.inputData / 100),
+      carbs: parseFloat(item.carbs) * (item.inputData / 100),
+      protein: parseFloat(item.protein) * (item.inputData / 100),
+      fats: parseFloat(item.fats) * (item.inputData / 100),
+    };
+
+    const kcalLeft = this.foodService.addMeal(itemValues);
   }
 
-  async presentAlert(item) {
+  async enterQuantityAlert(item) {
     const alert = await this.alertController.create({
       header: item.name,
       message: 'Enter quantity',
       buttons: [
         {
           text: 'Add meal',
-          handler: () => this.addMeal(item),
+          handler: (inputData) =>
+            this.addMeal({ ...item, inputData: parseInt(inputData[0]) }),
         },
       ],
       inputs: [

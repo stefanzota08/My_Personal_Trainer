@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { AuthService } from 'src/app/services/auth.service';
+import { DailyDataService } from 'src/app/services/daily-data.service';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-measurements-done',
@@ -11,7 +12,8 @@ import { UserDataService } from 'src/app/services/user-data.service';
 export class MeasurementsDonePage implements OnInit {
   constructor(
     private readonly userDataService: UserDataService,
-    private readonly authService: AuthService
+    private readonly dailyDataService: DailyDataService,
+    private readonly userInfoService: UserInfoService
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,9 @@ export class MeasurementsDonePage implements OnInit {
         leanBodyMass = (data.weight * (100 - fatPercentage)) / 100;
 
         // calculate the BMR using FIRST formula
+        BMR = 370 + 21.6 * leanBodyMass;
+      } else if (data.fatPercentage) {
+        leanBodyMass = (data.weight * (100 - data.fatPercentage)) / 100;
         BMR = 370 + 21.6 * leanBodyMass;
       }
 
@@ -94,25 +99,28 @@ export class MeasurementsDonePage implements OnInit {
         (totalKcal - totalFats * 9 - totalProtein * 4) / 4
       );
 
-      this.authService.uploadUserInfo({
+      this.userInfoService.uploadUserInfo({
         ...data,
         fatPercentage,
         leanBodyMass,
       });
 
-      this.authService.uploadUserDietData({
+      this.userInfoService.uploadUserDietData({
         BMR,
         totalKcal,
         totalProtein,
         totalCarbs,
         totalFats,
+        weight: data.weight,
       });
 
-      this.authService.uploadCurrentDateWithData({
+      this.dailyDataService.uploadCurrentDateWithData({
+        BMR,
         totalKcal,
         totalProtein,
         totalCarbs,
         totalFats,
+        weight: data.weight,
       });
     });
   }

@@ -23,7 +23,7 @@ export class WeightSelectPage implements OnInit {
       this.selectedUnit === 1
         ? this.selectedWeight
         : this.selectedWeight * 0.45359237;
-    this.userDataService.updateUserData({ weight: valueInKg });
+    this.userDataService.updateUserData({ weight: +valueInKg });
     this.router.navigate(['../age-select'], {
       relativeTo: this.activatedRoute,
     });

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { DailyDataService } from '../services/daily-data.service';
+import { FoodService } from '../services/food.service';
 
 @Component({
   selector: 'app-tab1',
@@ -38,7 +41,9 @@ export class Tab1Page {
 
   constructor(
     private authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly dailyDataService: DailyDataService,
+    private readonly foodService: FoodService
   ) {}
 
   ionViewWillEnter(): void {
@@ -64,24 +69,23 @@ export class Tab1Page {
   }
 
   async getDietData() {
-    await this.authService.getDietData().then((data) => {
-      this.totalKcal = data.totalKcal;
-      this.totalProtein = data.totalProtein;
-      this.totalFats = data.totalFats;
-      this.totalCarbs = data.totalCarbs;
-    });
+    const data = await this.dailyDataService.getDietData();
+    this.totalKcal = data.totalKcal;
+    this.totalProtein = data.totalProtein;
+    this.totalFats = data.totalFats;
+    this.totalCarbs = data.totalCarbs;
   }
 
   async getTodaysData() {
     try {
-      await this.authService.getTodaysData().then((data) => {
+      await this.dailyDataService.getTodaysData().then((data) => {
         this.currentKcal = data.totalKcal;
         this.currentProtein = data.totalProtein;
         this.currentFats = data.totalFats;
         this.currentCarbs = data.totalCarbs;
       });
     } catch {
-      this.authService.instantCreateNewDayDocument();
+      this.dailyDataService.instantCreateNewDayDocument();
       this.getTodaysData();
     }
   }

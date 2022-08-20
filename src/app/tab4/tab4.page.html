@@ -1,7 +1,59 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="profile-pic-wrapper">
+    <ion-icon class="profile-pic-icon" name="camera-outline"></ion-icon>
+  </div>
+  <div class="user-info-wrapper">
+    <span class="user-name"
+      >{{userInfo?.lastName + ' ' + userInfo?.firstName}}</span
+    >
+
+    <span class="user-info-label">Age</span>
+    <span class="user-info-data">{{userInfo?.age + ' y/o'}}</span>
+
+    <span class="user-info-label">Weight</span>
+    <span class="user-info-data">{{userInfo?.weight + ' kg'}}</span>
+
+    <span class="user-info-label">Height</span>
+    <span class="user-info-data">{{heightInCm + ' cm'}}</span>
+
+    <span class="user-info-label">Gender</span>
+    <span class="user-info-data"
+      >{{userInfo?.genderIsFemale ? 'Female' : 'Male'}}</span
+    >
+
+    <ng-container *ngIf="userInfo?.fatPercentage">
+      <span class="user-info-label">Body fat percentage</span>
+      <span class="user-info-data">{{userInfo?.fatPercentage + ' %'}}</span>
+    </ng-container>
+
+    <ion-button
+      class="user-info-button"
+      color="primary"
+      expand="block"
+      (click)="updateAlert()"
+      >Update info</ion-button
+    >
+  </div>
+
+  <ion-card style="margin-top: 2rem">
+    <ion-card-content class="chartWrapper">
+      <ion-button class="chart-button-back" fill="clear" (click)="scroller(-1)">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button
+        class="chart-button-forward"
+        fill="clear"
+        (click)="scroller(1)"
+      >
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+
+      <canvas
+        id="myChart"
+        #lineCanvas
+        style="position: relative; height: 20vh; width: 50vw; z-index: 2"
+      ></canvas>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

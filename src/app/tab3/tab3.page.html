@@ -9,7 +9,7 @@
   <div style="height: 100px !important">
     <ion-list>
       <ng-container *ngFor="let item of foodList | filter:searchKeyword">
-        <ion-card (click)="presentAlert(item)">
+        <ion-card (click)="enterQuantityAlert(item)">
           <ion-card-header>
             <ion-card-title>{{ item.name }}</ion-card-title>
           </ion-card-header>
