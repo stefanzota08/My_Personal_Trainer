@@ -1,21 +1,171 @@
-<ion-content [fullscreen]="true">
-  <ion-searchbar
-    placeholder="Try 'Oatmeal'"
-    [(ngModel)]="searchKeyword"
-    showCancelButton="focus"
-    animated
-  ></ion-searchbar>
-
-  <div style="height: 100px !important">
-    <ion-list>
-      <ng-container *ngFor="let item of foodList | filter:searchKeyword">
-        <ion-card (click)="enterQuantityAlert(item)">
-          <ion-card-header>
-            <ion-card-title>{{ item.name }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>{{ item.kcal + ' kcal/100g' }}</ion-card-content>
-        </ion-card>
-      </ng-container>
-    </ion-list>
+<ion-content>
+  <span class="title">Choose a category</span>
+  <div class="cards">
+    <ion-card class="food-category" id="food" (click)="setFoodModalOpen(true)">
+      <span>Food</span>
+      <div class="background-mask"></div>
+    </ion-card>
+    <ion-card
+      class="food-category"
+      id="beverages"
+      (click)="setBeveragesModalOpen(true)"
+    >
+      <span>Beverages</span>
+      <div class="background-mask"></div>
+    </ion-card>
+    <ion-card
+      class="food-category"
+      id="snacks"
+      (click)="setSnacksModalOpen(true)"
+    >
+      <span>Snacks & Supplements</span>
+      <div class="background-mask"></div>
+    </ion-card>
   </div>
+
+  <!-- Food Modal -->
+  <ion-modal id="food-modal" [isOpen]="isFoodModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Food List</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setFoodModalOpen(false)">Done</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+        <ion-searchbar
+          placeholder="Try 'Oatmeal'"
+          [(ngModel)]="searchKeyword"
+          showCancelButton="focus"
+          animated
+        ></ion-searchbar>
+
+        <div>
+          <ion-list>
+            <ng-container *ngIf="(foodList | filter:searchKeyword) as result">
+              <ion-card
+                *ngFor="let item of result"
+                (click)="enterQuantityAlert(item)"
+                style="background-color: #efefef"
+              >
+                <ion-card-header>
+                  <ion-card-title>{{ item.name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content
+                  >{{ item.kcal + ' kcal/100g' }}</ion-card-content
+                >
+              </ion-card>
+              <ng-container *ngIf="result.length === 0">
+                <span style="display: block; text-align: center"
+                  >Didn't find what you're looking for?</span
+                >
+                <ion-button
+                  style="margin-left: 50%; transform: translate(-50%)"
+                  (click)="addItemAlert('FOOD')"
+                >
+                  Add new item to the list
+                </ion-button>
+              </ng-container>
+            </ng-container>
+          </ion-list>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Beverages Modal -->
+  <ion-modal id="beverages-modal" [isOpen]="isBeveragesModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Beverages List</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setBeveragesModalOpen(false)">Done</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+        <ion-searchbar
+          placeholder="Try 'Coca-Cola'"
+          [(ngModel)]="searchKeyword"
+          showCancelButton="focus"
+          animated
+        ></ion-searchbar>
+
+        <div style="height: 100px !important">
+          <ion-list>
+            <ng-container
+              *ngFor="let item of beveragesList | filter:searchKeyword"
+            >
+              <ion-card
+                (click)="enterQuantityAlert(item)"
+                style="background-color: #efefef"
+              >
+                <ion-card-header>
+                  <ion-card-title>{{ item.name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content
+                  >{{ item.kcal + ' kcal/100ml' }}</ion-card-content
+                >
+              </ion-card>
+            </ng-container>
+          </ion-list>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Snacks Modal -->
+  <ion-modal id="snacks-modal" [isOpen]="isSnacksModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Snacks & Supplements List</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setSnacksModalOpen(false)">Done</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+        <ion-searchbar
+          placeholder="Try 'Coca-Cola'"
+          [(ngModel)]="searchKeyword"
+          showCancelButton="focus"
+          animated
+        ></ion-searchbar>
+
+        <div style="height: 100px !important">
+          <ion-list>
+            <ng-container *ngIf="(snackList | filter:searchKeyword) as result">
+              <ion-card
+                *ngFor="let item of result"
+                (click)="enterQuantityAlert(item)"
+                style="background-color: #efefef"
+              >
+                <ion-card-header>
+                  <ion-card-title>{{ item.name }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content
+                  >{{ item.kcal + ' kcal/100g' }}</ion-card-content
+                >
+              </ion-card>
+              <ng-container *ngIf="result.length === 0">
+                <span style="display: block; text-align: center"
+                  >Didn't find what you're looking for?</span
+                >
+                <ion-button
+                  style="margin-left: 50%; transform: translate(-50%)"
+                  (click)="addItemAlert('snacks-supplements')"
+                >
+                  Add new item to the list
+                </ion-button>
+              </ng-container>
+            </ng-container>
+          </ion-list>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

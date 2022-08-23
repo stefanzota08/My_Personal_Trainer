@@ -1,0 +1,164 @@
+.title {
+  display: block;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 30px;
+  font-family: Teko;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  display: block;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 35px;
+  color: #005b74;
+  font-family: Teko-Bold;
+  text-transform: uppercase;
+}
+
+.modal-subtitle {
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  color: #454545;
+  padding-top: 2rem;
+  margin-left: 0.5rem;
+  font-family: Teko-Semibold;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin-top: -0.1rem;
+  font-family: RobotoCondensed-Light;
+  text-transform: capitalize;
+}
+
+.cards {
+  height: calc(100% - 56px - 63px);
+}
+
+.workout-card {
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-family: Teko-Light;
+  color: #efefef;
+
+  & span {
+    z-index: 2;
+  }
+}
+
+.background-mask {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  opacity: 0.5;
+}
+
+ion-card {
+  &#legs {
+    --background: url(/assets/images/legs.jpg) no-repeat center/100%;
+  }
+  &#abs {
+    --background: url(/assets/images/abs.jpg) no-repeat center/100%;
+  }
+  &#arms {
+    --background: url(/assets/images/arms.jpg) no-repeat center/100%;
+  }
+  &#chest {
+    --background: url(/assets/images/chest.jpg) no-repeat center/100%;
+  }
+}
+
+.header {
+  height: 10rem;
+  &#legs {
+    background: url(/assets/images/legs.jpg) no-repeat center/100%;
+  }
+  &#abs {
+    background: url(/assets/images/abs.jpg) no-repeat center/100%;
+  }
+  &#arms {
+    background: url(/assets/images/arms.jpg) no-repeat center/100%;
+  }
+  &#chest {
+    background: url(/assets/images/chest.jpg) no-repeat center/100%;
+  }
+}
+
+.day-card {
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.2rem;
+  & .day-number {
+    font-size: 16px;
+  }
+
+  & .workout-duration {
+    font-size: 12px;
+  }
+}
+
+ion-list {
+  overflow-y: scroll;
+  background-color: #efefef;
+  height: calc(100vh - 18.5rem);
+  background-color: transparent !important;
+}
+
+#select-day-modal {
+  & ion-card {
+    color: #000;
+    box-shadow: none !important;
+  }
+}
+
+#workout-summary-modal {
+  & ion-card {
+    display: flex;
+    align-items: center;
+  }
+
+  .info {
+    margin-left: 6rem;
+    & .exercise-title,
+    .exercise-reps {
+      font-family: Roboto-Bold;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.gif-image {
+  width: 8rem;
+  height: 6rem;
+}
+
+.start-workout-button {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 70%;
+  height: 2.5rem;
+  font-family: RobotoCondensed-Regular;
+  font-size: 16px;
+  --border-radius: 1rem;
+  text-transform: capitalize;
+  z-index: 4;
+}

@@ -1,7 +1,101 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Workout</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- workout page -->
+  <span class="title">Select custom workout for today</span>
+  <div class="cards">
+    <!-- legs card -->
+    <ion-card class="workout-card" id="legs" (click)="openModal('legs')">
+      <span>Legs</span>
+      <div class="background-mask"></div>
+    </ion-card>
+
+    <!-- abs card -->
+    <ion-card class="workout-card" id="abs" (click)="openModal('abs')">
+      <span>Abs</span>
+      <div class="background-mask"></div>
+    </ion-card>
+
+    <!-- arms card -->
+    <ion-card class="workout-card" id="arms" (click)="openModal('arms')">
+      <span>Arms</span>
+      <div class="background-mask"></div>
+    </ion-card>
+
+    <!-- chest card -->
+    <ion-card class="workout-card" id="chest" (click)="openModal('chest')">
+      <span>Chest</span>
+      <div class="background-mask"></div>
+    </ion-card>
+  </div>
+
+  <!-- Modal -->
+  <ion-modal id="select-day-modal" [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-content [fullscreen]="true">
+        <div class="header" [id]="selectedTab"></div>
+        <span class="modal-title">{{displayedTitle}}</span>
+        <span class="subtitle">Full progressive Workout</span>
+        <ion-card>
+          <ion-list>
+            <ion-row>
+              <ng-container *ngFor="let i of numberOfDays">
+                <ion-col size="6">
+                  <div class="day-card">
+                    <span class="day-number" (click)="openDailyRoutineModal(i)"
+                      >Day {{i}}</span
+                    >
+                    <div style="display: flex; align-items: center">
+                      <ion-icon name="time-outline"></ion-icon>
+                      <span class="workout-duration">11 min</span>
+                    </div>
+                  </div>
+                </ion-col>
+              </ng-container>
+            </ion-row>
+          </ion-list>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal id="workout-summary-modal" [isOpen]="isDailyRoutineSummaryOpen">
+    <ng-template>
+      <ion-content
+        style="
+          --background: #efefef !important;
+          --padding-bottom: 6rem !important;
+        "
+      >
+        <div class="header" [id]="selectedTab"></div>
+        <div
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <span class="modal-title">{{displayedTitle}}</span>
+          <span class="modal-subtitle">{{' - Day ' + selectedDay}}</span>
+        </div>
+        <p class="subtitle">
+          {{todayWorkout.length + ' excercises - Estimated time: ' +
+          workoutEstimatedTime + ' min'}}
+        </p>
+        <ng-container *ngFor="let exercise of todayWorkout">
+          <ion-card>
+            <img
+              class="gif-image"
+              [src]="'/assets/gifs/'+ selectedTab + '/' + exercise.gif"
+              alt=""
+            />
+            <div class="info">
+              <p class="exercise-title">{{exercise.name}}</p>
+              <p class="exercise-reps">x{{exercise.totalReps}}</p>
+            </div>
+          </ion-card>
+        </ng-container>
+        <ion-button
+          class="start-workout-button"
+          color="primary"
+          routerLink="../nutrition"
+          >Start</ion-button
+        >
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

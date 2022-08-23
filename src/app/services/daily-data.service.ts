@@ -31,6 +31,15 @@ export class DailyDataService {
     return result.data();
   }
 
+  async getTodaysMeals() {
+    try {
+      const todaysData = await this.getTodaysData();
+      return todaysData.meals;
+    } catch {
+      return;
+    }
+  }
+
   // returns the current date in format (dd-mm-yyyy)
   getCurrentDate() {
     const currentDate = new Date();
@@ -66,7 +75,7 @@ export class DailyDataService {
     const userDocRef = doc(this.firestore, `daily-data/${user.uid}`);
 
     let todayData = {};
-    todayData[today] = { ...data };
+    todayData[today] = { ...data, meals: [] };
     try {
       await updateDoc(userDocRef, todayData);
     } catch {

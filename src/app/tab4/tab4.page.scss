@@ -16,10 +16,6 @@
   }
 }
 
-ion-content {
-  --ion-background-color: #cee0e5 !important;
-}
-
 .user-info-wrapper {
   display: flex;
   flex-direction: column;
@@ -80,4 +76,8 @@ ion-content {
 
 ion-card {
   --background: #efefef;
+}
+
+ion-content {
+  --ion-background-color: #cee0e5 !important;
 }

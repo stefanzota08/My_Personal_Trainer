@@ -81,3 +81,13 @@
 ion-content {
   --ion-background-color: #cee0e5;
 }
+
+ion-list {
+  max-height: 10rem;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
+
+ion-card {
+  box-shadow: none !important;
+}

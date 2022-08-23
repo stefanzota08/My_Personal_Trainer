@@ -116,7 +116,24 @@
     <ion-col size="12">
       <div class="meals-panel">
         <span class="meals-panel-header">What you ate today:</span>
-        <span *ngIf="!meals" class="no-meals"> No meals yet</span>
+        <span *ngIf="!meals || meals.length === 0" class="no-meals">
+          No meals yet</span
+        >
+        <ion-card *ngIf="meals && meals.length > 0">
+          <ion-list>
+            <ion-item *ngFor="let meal of meals">
+              <label>{{meal.name}}</label>
+              <label style="position: absolute; right: 2rem"
+                >{{meal.kcal + ' kcal'}}</label
+              >
+              <ion-icon
+                style="position: absolute; right: 0"
+                name="trash-outline"
+                (click)="confirmDelete(meal)"
+              ></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-card>
         <ion-button
           class="meals-panel-button"
           color="primary"

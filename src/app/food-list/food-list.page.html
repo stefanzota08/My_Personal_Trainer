@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true">
+  <ion-searchbar
+    placeholder="Try 'Oatmeal'"
+    [(ngModel)]="searchKeyword"
+    showCancelButton="focus"
+    animated
+  ></ion-searchbar>
+
+  <div style="height: 100px !important">
+    <ion-list>
+      <ng-container *ngFor="let item of foodList | filter:searchKeyword">
+        <ion-card (click)="enterQuantityAlert(item)">
+          <ion-card-header>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>{{ item.kcal + ' kcal/100g' }}</ion-card-content>
+        </ion-card>
+      </ng-container>
+    </ion-list>
+  </div>
+</ion-content>

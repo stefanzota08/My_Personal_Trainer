@@ -32,8 +32,9 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'tab4',
-    loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
+    path: 'food-list',
+    loadChildren: () =>
+      import('./food-list/food-list.module').then((m) => m.FoodListPageModule),
   },
 ];
 @NgModule({
