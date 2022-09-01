@@ -81,3 +81,15 @@ ion-card {
 ion-content {
   --ion-background-color: #cee0e5 !important;
 }
+
+.logout-button {
+  justify-content: start;
+  --border-radius: 1rem !important;
+  --background: transparent !important;
+  --box-shadow: none;
+  color: #005b70;
+
+  & ion-icon {
+    margin-left: 0.1rem;
+  }
+}

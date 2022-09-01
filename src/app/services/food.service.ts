@@ -67,6 +67,7 @@ export class FoodService {
     let currentFats: number;
     let weight: number;
     let meals: any[] = [];
+    let workouts: any[] = [];
 
     try {
       await this.dailyDataService.getTodaysData().then((data) => {
@@ -76,6 +77,7 @@ export class FoodService {
         currentCarbs = data.totalCarbs;
         weight = data.weight;
         meals = data.meals;
+        workouts = data.workouts;
       });
     } catch {
       this.dailyDataService.instantCreateNewDayDocument();
@@ -92,6 +94,7 @@ export class FoodService {
       totalFats: Math.round(currentFats - parseInt(item.fats)),
       weight: weight,
       meals: meals,
+      workouts: workouts,
     };
     updateDoc(docRef, todayData);
   }
@@ -108,6 +111,7 @@ export class FoodService {
     let currentFats: number;
     let weight: number;
     let meals: any[] = [];
+    let workouts: any[] = [];
 
     try {
       await this.dailyDataService.getTodaysData().then((data) => {
@@ -117,6 +121,7 @@ export class FoodService {
         currentCarbs = data.totalCarbs;
         weight = data.weight;
         meals = data.meals;
+        workouts = data.workouts;
       });
     } catch {
       this.dailyDataService.instantCreateNewDayDocument();
@@ -148,6 +153,7 @@ export class FoodService {
       totalFats: Math.round(currentFats + parseInt(item.fats)),
       weight: weight,
       meals: meals,
+      workouts: workouts,
     };
     updateDoc(docRef, todayData);
   }

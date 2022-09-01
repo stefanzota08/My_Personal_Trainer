@@ -5,13 +5,12 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Chart, registerables } from 'chart.js';
 import { ChartDataService } from '../services/chart-data.service';
 import { UserInfoService } from '../services/user-info.service';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { getStorage } from '@angular/fire/storage';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
@@ -22,8 +21,12 @@ export class Tab4Page implements OnInit, AfterViewInit {
   userInfo: any;
   lineChart: any;
   heightInCm: number;
-  weightLabels: string[] = [];
+  chartLabels: string[] = [];
   weightData: number[] = [];
+  kcalData: number[] = [];
+  proteinData: number[] = [];
+  carbsData: number[] = [];
+  fatsData: number[] = [];
   allDaysData: any;
   userAlertInputs = ['firstName', 'lastName', 'age', 'weight', 'height'];
   selectedPhoto;
@@ -32,8 +35,8 @@ export class Tab4Page implements OnInit, AfterViewInit {
     private readonly userInfoService: UserInfoService,
     private readonly alertController: AlertController,
     private readonly chartDataService: ChartDataService,
-    private readonly camera: Camera,
-    private readonly navController: NavController
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -50,7 +53,7 @@ export class Tab4Page implements OnInit, AfterViewInit {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: this.weightLabels,
+        labels: this.chartLabels,
         datasets: [
           {
             label: 'Weight',
@@ -73,6 +76,90 @@ export class Tab4Page implements OnInit, AfterViewInit {
             data: this.weightData,
             spanGaps: false,
           },
+          {
+            label: 'Kcal',
+            fill: false,
+            backgroundColor: '#a64d79',
+            borderColor: '#a64d79',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#a64d79',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#a64d79',
+            pointHoverBorderColor: '#a64d79',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: this.kcalData,
+            spanGaps: false,
+          },
+          {
+            label: 'Protein',
+            fill: false,
+            backgroundColor: '#6aa84f',
+            borderColor: '#6aa84f',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#6aa84f',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#6aa84f',
+            pointHoverBorderColor: '#6aa84f',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: this.proteinData,
+            spanGaps: false,
+          },
+          {
+            label: 'Fats',
+            fill: false,
+            backgroundColor: '#f1c232',
+            borderColor: '#f1c232',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#f1c232',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#f1c232',
+            pointHoverBorderColor: '#f1c232',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: this.fatsData,
+            spanGaps: false,
+          },
+          {
+            label: 'Carbs',
+            fill: false,
+            backgroundColor: '#e06666',
+            borderColor: '#e06666',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#e06666',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#e06666',
+            pointHoverBorderColor: '#e06666',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: this.carbsData,
+            spanGaps: false,
+          },
         ],
       },
       options: {
@@ -81,10 +168,10 @@ export class Tab4Page implements OnInit, AfterViewInit {
             min: 0,
             max: 5,
           },
-          y: {
-            min: Math.min.apply(Math, this.weightData),
-            max: Math.max.apply(Math, this.weightData),
-          },
+          // y: {
+          //   min: Math.min.apply(Math, this.weightData),
+          //   max: Math.max.apply(Math, this.weightData),
+          // },
         },
       },
     });
@@ -184,45 +271,50 @@ export class Tab4Page implements OnInit, AfterViewInit {
     this.allDaysData = await this.chartDataService.getAllDaysData();
     console.log(this.allDaysData);
     this.weightData = this.allDaysData.map((day) => day.weight);
-    this.weightLabels = this.allDaysData.map((day) => day.date);
-    console.log(this.weightData);
-    console.log(this.weightLabels);
+    this.kcalData = this.allDaysData.map((day) => {
+      let kcal = 0;
+      day.meals.forEach((meal) => {
+        kcal += meal.kcal;
+      });
+      return Math.round(kcal);
+    });
+
+    this.proteinData = this.allDaysData.map((day) => {
+      let protein = 0;
+      day.meals.forEach((meal) => {
+        protein += meal.protein;
+      });
+      return Math.round(protein);
+    });
+
+    this.carbsData = this.allDaysData.map((day) => {
+      let carbs = 0;
+      day.meals.forEach((meal) => {
+        carbs += meal.carbs;
+      });
+      return Math.round(carbs);
+    });
+
+    this.fatsData = this.allDaysData.map((day) => {
+      let fats = 0;
+      day.meals.forEach((meal) => {
+        fats += meal.fats;
+      });
+      return Math.round(fats);
+    });
+
+    this.chartLabels = this.allDaysData.map((day) => day.date);
+    console.log('weight data', this.weightData);
+    console.log('kcal data', this.kcalData);
+    console.log(this.chartLabels);
   }
 
-  // takeImage() {
-  //   const options: CameraOptions = {
-  //     quality: 100,
-  //     destinationType: this.camera.DestinationType.DATA_URL,
-  //     sourceType: this.camera.PictureSourceType.CAMERA,
-  //     saveToPhotoAlbum: false,
-  //     allowEdit: true,
-  //     targetHeight: 500,
-  //     targetWidth: 500,
-  //   };
-  //   this.camera.getPicture(options).then(
-  //     (imageData) => {
-  //       this.selectedPhoto = this.dataURLtoBlob(
-  //         'data:image/jpeg;base64, ' + imageData
-  //       );
-  //       this.upload();
-  //     },
-  //     (err) => {
-  //       console.log('error ', err);
-  //     }
-  //   );
-  // }
-
-  // dataURLtoBlob(dataURL) {
-  //   let binary = atob(dataURL.split(',')[1]);
-  //   let array = [];
-  //   for (let i = 0; i < binary.length; i++) {
-  //     array.push(binary.charCodeAt(i));
-  //   }
-  //   return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
-  // }
-
-  // async upload() {
-  //   let storage = getStorage();
-  //   let uploadTask = storage.ref()
-  // }
+  async logout() {
+    this.authService
+      .logout()
+      .then(() => {
+        this.router.navigateByUrl('/login', { replaceUrl: true });
+      })
+      .catch((error) => console.log(error));
+  }
 }

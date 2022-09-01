@@ -12,7 +12,14 @@
   justify-content: center !important;
 }
 
-.alert-button {
+// .alert-button {
+//   background-color: #005b74 !important;
+//   width: 100% !important;
+//   border-radius: 1rem !important;
+//   margin: 0 !important;
+// }
+
+.alert-button-role-confirm {
   background-color: #005b74 !important;
   width: 100% !important;
   border-radius: 1rem !important;
@@ -24,4 +31,11 @@
   color: #efefef !important;
   font-family: Roboto-Regular !important;
   text-transform: capitalize !important;
+}
+
+.alert-button-role-cancel {
+  margin-right: 0px !important;
+  & .alert-button-inner {
+    color: #005b74 !important;
+  }
 }

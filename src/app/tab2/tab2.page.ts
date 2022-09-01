@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { range } from 'rxjs';
 import { WorkoutDataService } from '../services/workout-data.service';
+import { WorkoutStateService } from '../services/workout-state.service';
 
 @Component({
   selector: 'app-tab2',
@@ -21,8 +23,12 @@ export class Tab2Page {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30,
   ];
-  constructor(private readonly workoutDataService: WorkoutDataService) {
-    this.workoutDataService.addItemsToDatabase();
+  constructor(
+    private readonly workoutDataService: WorkoutDataService,
+    private readonly router: Router,
+    private readonly workoutState: WorkoutStateService
+  ) {
+    // this.workoutDataService.addItemsToDatabase();
     this.getExercisesList();
     this.getDailyWorkouts();
   }
@@ -76,5 +82,13 @@ export class Tab2Page {
   async getDailyWorkouts() {
     this.dailyWorkouts = await this.workoutDataService.getDailyWorkouts();
     console.log(this.dailyWorkouts);
+  }
+
+  startFullWorkoutFlow() {
+    this.isModalOpen = false;
+    this.isDailyRoutineSummaryOpen = false;
+    this.workoutState.updateWorkoutData({ todayWorkout: this.todayWorkout });
+    this.workoutState.updateWorkoutData({ bodyPart: this.selectedTab });
+    this.router.navigateByUrl('/full-workout-flow', { replaceUrl: true });
   }
 }

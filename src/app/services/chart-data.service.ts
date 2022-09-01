@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { doc, Firestore, getDoc } from '@angular/fire/firestore';
-import { DailyDataService } from './daily-data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChartDataService {
   constructor(
-    private readonly dailyDataService: DailyDataService,
     private readonly auth: Auth,
     private readonly firestore: Firestore
   ) {}

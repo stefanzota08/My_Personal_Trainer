@@ -78,6 +78,7 @@ export class Tab3Page implements OnInit {
       buttons: [
         {
           text: 'Add meal',
+          role: 'confirm',
           handler: (inputData) =>
             this.addMeal({ ...item, inputData: parseInt(inputData[0]) }),
         },
@@ -104,6 +105,7 @@ export class Tab3Page implements OnInit {
       buttons: [
         {
           text: 'Add item',
+          role: 'confirm',
           handler: (inputData) =>
             this.addItemToTheList(type, {
               name: parseInt(inputData[0]),

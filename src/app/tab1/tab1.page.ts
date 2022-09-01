@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { DailyDataService } from '../services/daily-data.service';
 import { FoodService } from '../services/food.service';
+import { WorkoutDataService } from '../services/workout-data.service';
 
 @Component({
   selector: 'app-tab1',
@@ -49,7 +50,8 @@ export class Tab1Page {
     private readonly router: Router,
     private readonly dailyDataService: DailyDataService,
     private readonly alertController: AlertController,
-    private readonly foodService: FoodService
+    private readonly foodService: FoodService,
+    private readonly workoutDataService: WorkoutDataService
   ) {}
 
   ionViewWillEnter(): void {
@@ -66,11 +68,6 @@ export class Tab1Page {
       transform,
       fontSize: textSize + 'px',
     };
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   async getDietData() {
@@ -99,10 +96,15 @@ export class Tab1Page {
     this.meals = await this.dailyDataService.getTodaysMeals();
   }
 
+  async getTodaysWorkouts() {
+    this.workouts = await this.dailyDataService.getTodaysWorkouts();
+  }
+
   getAllData() {
     this.getDietData();
     this.getTodaysData();
     this.getTodaysMeals();
+    this.getTodaysWorkouts();
   }
 
   async removeMealFromList(meal: any) {
@@ -112,7 +114,14 @@ export class Tab1Page {
     this.getAllData();
   }
 
-  async confirmDelete(meal: any) {
+  async removeWorkoutFromList(workout: any) {
+    delete workout.inputData;
+    console.log(workout);
+    await this.workoutDataService.removeWorkout(workout);
+    this.getAllData();
+  }
+
+  async confirmDeleteMeal(meal: any) {
     const alert = await this.alertController.create({
       header: 'Are you sure?',
       message: 'Remove ' + meal.name + ' from list',
@@ -127,6 +136,29 @@ export class Tab1Page {
           role: 'confirm',
           handler: () => {
             this.removeMealFromList(meal);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async confirmDeleteWorkout(workout: any) {
+    const alert = await this.alertController.create({
+      header: 'Are you sure?',
+      message: 'Remove ' + workout.bodyPart + ' workout from list',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {},
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.removeWorkoutFromList(workout);
           },
         },
       ],

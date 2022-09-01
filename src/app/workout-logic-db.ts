@@ -663,7 +663,7 @@ export const workouts = {
       exercises: [0, 3, 4, 2, 7], // array of indexes, each number is the index of the exercise in the array of exercises
       __repsMultiplyIndex: 1.1, // we will multiply each exercise's initial rep count with this index and round the value ========== Math.floor(excercises.abs[0].initialReps * repsMultiplyIndex)
       __estimatedTime:
-        ' nr of total reps * 4sec + (nr of exercises * 30sec pause)',
+        'nr of total reps * 4sec + (nr of exercises * 30sec pause)',
     },
     {
       count: 2,

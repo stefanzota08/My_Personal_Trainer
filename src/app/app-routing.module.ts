@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./food-list/food-list.module').then((m) => m.FoodListPageModule),
   },
+  {
+    path: 'full-workout-flow',
+    loadChildren: () => import('./full-workout-flow/full-workout-flow.module').then( m => m.FullWorkoutFlowPageModule)
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

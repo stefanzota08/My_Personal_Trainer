@@ -1,0 +1,155 @@
+<ion-content>
+  <!-- <ion-button (click)="openTimerModal(30000)">Open modal</ion-button> -->
+
+  <ion-icon
+    name="arrow-back-outline"
+    class="back-icon"
+    (click)="exitWorkout()"
+  ></ion-icon>
+  <!-- gif wrapper -->
+  <img
+    class="gif-image"
+    [src]="'assets/gifs/' + bodyPart + '/' + todayWorkout[exerciseIndex].gif"
+  />
+
+  <div class="text-and-buttons">
+    <p class="exercise-title">{{todayWorkout[exerciseIndex].name}}</p>
+    <p class="exercise-reps">x{{todayWorkout[exerciseIndex].totalReps}}</p>
+    <ion-button class="done-button" expand="block" (click)="loadNextExercise()"
+      >Done</ion-button
+    >
+  </div>
+
+  <ion-row class="bottom-buttons">
+    <ion-col size="5">
+      <p
+        style="
+          text-align: center;
+          font-family: Roboto-Bold;
+          font-size: 18px;
+          color: #444444;
+        "
+        (click)="previousExercise()"
+      >
+        << Previous
+      </p>
+    </ion-col>
+    <ion-col size="2">
+      <div class="split-bar-2"></div>
+    </ion-col>
+    <ion-col size="5">
+      <p
+        style="
+          text-align: center;
+          font-family: Roboto-Bold;
+          font-size: 18px;
+          color: #444444;
+        "
+        (click)="skipExercise()"
+      >
+        Skip >>
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <!-- rest timer modal -->
+  <ion-modal [isOpen]="isTimerModalOpen" [animated]="false">
+    <ng-template>
+      <ion-content>
+        <div class="timer-ui">
+          <ion-row class="modal-title">
+            <ion-col size="12">
+              <p>REST</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="circle-wrapper">
+              <div class="current" [ngStyle]="getOverlayStyle(55)">
+                {{ timer }}
+              </div>
+              <round-progress
+                [current]="current"
+                [max]="total"
+                [color]="color"
+                [background]="background"
+                [radius]="radius"
+                [stroke]="strokeMacro"
+                [clockwise]="clockwise"
+                [responsive]="responsive"
+                [duration]="duration"
+                [animation]="animation"
+                [animationDelay]="animationDelay"
+              ></round-progress>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5" class="ion-no-margin">
+              <p class="add-rest" (click)="addRestSeconds()">+20s</p>
+            </ion-col>
+            <ion-col size="2" class="ion-no-margin">
+              <p class="split-bar"></p>
+            </ion-col>
+            <ion-col size="5" class="ion-no-margin" style="display: flex">
+              <p class="skip-rest" (click)="closeTimerModal()">Skip</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- <ion-button (click)="closeTimerModal()">Close Modal</ion-button> -->
+        <div class="next-exercise">
+          <!-- <p style="position: absolute">
+            NEXT:
+            <span
+              >Exercise {{exerciseIndex + 1 + '/' + todayWorkout.length}}</span
+            >
+          </p> -->
+          <div style="display: flex">
+            <img
+              class="next-gif-image"
+              [src]="'assets/gifs/' + bodyPart + '/' + todayWorkout[exerciseIndex].gif"
+            />
+            <div class="next-info">
+              <p class="next-exercise-name">
+                {{todayWorkout[exerciseIndex].name}}
+              </p>
+              <p class="next-exercise-reps">
+                x{{todayWorkout[exerciseIndex].totalReps}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- workout done modal -->
+  <ion-modal [isOpen]="isWorkoutDone" class="workout-done-modal">
+    <ng-template>
+      <ion-content>
+        <p class="workout-done-header">Congratulations</p>
+        <p class="workout-done-subheader">Workout Done</p>
+        <ion-card class="middle-card">
+          <p class="completed-exercises">Comlpeted exercises:</p>
+          <p class="completed-exercises-value">
+            {{completedExercises.length + ' / ' + todayWorkout.length}}
+          </p>
+          <p class="total-time">Total time:</p>
+          <p class="total-time-value">{{totalWorkoutTime}}</p>
+        </ion-card>
+
+        <ion-card class="footer-card">
+          <p class="footer-title">Want to update your info?</p>
+          <ion-button
+            class="footer-button"
+            color="primary"
+            expand="block"
+            (click)="openUpdateInfoModal()"
+            >Update now</ion-button
+          >
+          <p class="no-thanks-button" (click)="navigateToHomePage()">
+            No thanks
+          </p>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

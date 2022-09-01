@@ -45,6 +45,7 @@ export class FoodListPage implements OnInit {
       buttons: [
         {
           text: 'Add meal',
+          role: 'confirm',
           handler: (inputData) =>
             this.addMeal({ ...item, inputData: parseInt(inputData[0]) }),
         },
