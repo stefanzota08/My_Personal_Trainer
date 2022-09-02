@@ -33,8 +33,11 @@ export class HeightSelectPage implements OnInit {
   }
 
   setSelectedHeight() {
-    const heightInInches = this.selectedHeight / 2.54;
-    this.userDataService.updateUserData({ height: heightInInches });
+    const heightInCm = this.selectedHeight;
+    this.userDataService.updateUserData({
+      heightInCm: heightInCm,
+      heightInInches: heightInCm / 2.54,
+    });
     this.router.navigate(['../weight-select'], {
       relativeTo: this.activatedRoute,
     });

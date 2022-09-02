@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, updateDoc } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
 import { DailyDataService } from './daily-data.service';
+import { UserDataService } from './user-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class UserInfoService {
   constructor(
     private readonly auth: Auth,
     private readonly dailyDataService: DailyDataService,
-    private readonly firestore: Firestore
+    private readonly firestore: Firestore,
+    private readonly userDataService: UserDataService
   ) {
     this.currentDate = this.dailyDataService.getCurrentDate();
   }
@@ -40,16 +42,42 @@ export class UserInfoService {
   }
 
   async updateUserInfo(data) {
+    const userMeasurements = await this.getUserInfo();
+
+    const result = this.userDataService.calculateKcalAndMacro({
+      ...userMeasurements,
+      ...data,
+    });
+
+    console.log(result);
+
     const user = this.auth.currentUser;
     const userData = await this.getUserInfo();
     const userDailyData = await this.dailyDataService.getTodaysData();
     const measurementsDoc = doc(this.firestore, `measurements/${user.uid}`);
     const dailyDoc = doc(this.firestore, `daily-data/${user.uid}`);
     const dietDoc = doc(this.firestore, `diet-data/${user.uid}`);
-    updateDoc(measurementsDoc, data);
+    updateDoc(measurementsDoc, { ...result });
+
     let updatedData = {};
-    updatedData[this.currentDate] = { ...userDailyData, weight: data.weight };
+    updatedData[this.currentDate] = {
+      ...userDailyData,
+      weight: result.weight,
+      totalProtein: result.totalProtein,
+      totalKcal: result.totalKcal,
+      totalCarbs: result.totalCarbs,
+      totalFats: result.totalFats,
+      BMR: result.BMR,
+    };
+
     updateDoc(dailyDoc, updatedData);
-    updateDoc(dietDoc, { weight: data.weight });
+    updateDoc(dietDoc, {
+      weight: result.weight,
+      totalProtein: result.totalProtein,
+      totalKcal: result.totalKcal,
+      totalCarbs: result.totalCarbs,
+      totalFats: result.totalFats,
+      BMR: result.BMR,
+    });
   }
 }

@@ -190,6 +190,7 @@ export class FullWorkoutFlowPage implements OnInit {
         {
           type: 'number',
           placeholder: 'Your current weight',
+          label: 'Weight',
           min: 1,
           max: 9999,
         },
@@ -201,7 +202,9 @@ export class FullWorkoutFlowPage implements OnInit {
 
   updateInfo(inputData) {
     console.log(inputData[0]);
-    this.userInfoService.updateUserInfo({ weight: Number(inputData[0]) });
-    this.navigateToHomePage();
+    if (inputData[0]) {
+      this.userInfoService.updateUserInfo({ weight: Number(inputData[0]) });
+      this.navigateToHomePage();
+    }
   }
 }

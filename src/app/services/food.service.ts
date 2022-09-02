@@ -161,11 +161,7 @@ export class FoodService {
   async addNewItemToList(type: string, data: any) {
     const user = this.auth.currentUser;
     const userDocRef = doc(this.firestore, `${type}/${user.uid}`);
-    if (userDocRef) {
-      console.log('exista');
-    } else {
-      console.log('nu exista');
-    }
+
     let newItem = {};
     newItem[data.name] = { ...data };
 

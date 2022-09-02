@@ -39,6 +39,10 @@ export class Tab2Page {
     this.displayedTitle = bodyPart + ' Workout';
   }
 
+  closeSelectDayModal() {
+    this.isModalOpen = false;
+  }
+
   openDailyRoutineModal(dayNumber: number) {
     this.isDailyRoutineSummaryOpen = true;
     this.selectedDay = dayNumber;
@@ -72,6 +76,10 @@ export class Tab2Page {
     this.workoutEstimatedTime = Math.ceil(this.workoutEstimatedTime / 60);
 
     console.log(this.todayWorkout);
+  }
+
+  closeDailyRoutineModal() {
+    this.isDailyRoutineSummaryOpen = false;
   }
 
   async getExercisesList() {

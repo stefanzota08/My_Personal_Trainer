@@ -41,6 +41,15 @@
   height: calc(100% - 56px - 63px);
 }
 
+.back-icon {
+  font-size: 40px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  position: fixed;
+  color: #444;
+  z-index: 1000;
+}
+
 .workout-card {
   height: 25%;
   display: flex;

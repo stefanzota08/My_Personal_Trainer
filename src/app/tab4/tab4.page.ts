@@ -28,7 +28,14 @@ export class Tab4Page implements OnInit, AfterViewInit {
   carbsData: number[] = [];
   fatsData: number[] = [];
   allDaysData: any;
-  userAlertInputs = ['firstName', 'lastName', 'age', 'weight', 'height'];
+  userAlertInputs = [
+    'firstName',
+    'lastName',
+    'age',
+    'weight',
+    'heightInCm',
+    'fatPercentage',
+  ];
   selectedPhoto;
 
   constructor(
@@ -205,6 +212,7 @@ export class Tab4Page implements OnInit, AfterViewInit {
       buttons: [
         {
           text: 'Update',
+          role: 'confirm',
           handler: (inputData) => this.updateUserInfo(inputData),
         },
       ],
@@ -232,8 +240,19 @@ export class Tab4Page implements OnInit, AfterViewInit {
         {
           label: 'Height',
           type: 'number',
-          value: Math.round(this.userInfo.height * 2.54),
+          value: this.userInfo.heightInCm,
         },
+        this.userInfo.fatPercentage
+          ? {
+              label: 'Fat Percentage',
+              type: 'number',
+              value: this.userInfo.fatPercentage,
+            }
+          : {
+              label: 'Fat Percentage',
+              type: 'number',
+              placeholder: 'Add your fat percentage',
+            },
       ],
       animated: true,
     });
@@ -244,7 +263,7 @@ export class Tab4Page implements OnInit, AfterViewInit {
   async getUserInfo() {
     const result = await this.userInfoService.getUserInfo();
     this.userInfo = result;
-    this.heightInCm = Math.round(this.userInfo?.height * 2.54);
+    this.heightInCm = this.userInfo?.heightInCm;
   }
 
   async updateUserInfo(data) {
@@ -252,9 +271,6 @@ export class Tab4Page implements OnInit, AfterViewInit {
 
     Object.keys(data).forEach((key) => {
       switch (this.userAlertInputs[key]) {
-        case 'height':
-          updatedData[this.userAlertInputs[key]] = data[key] / 2.54;
-          break;
         case 'weight':
           updatedData[this.userAlertInputs[key]] = +data[key];
           break;
