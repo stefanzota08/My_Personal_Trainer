@@ -61,25 +61,27 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col size="12" class="ion-text-center">
-          <ion-button
-            type="submit"
-            class="register-button"
-            color="light"
-            expand="block"
-            [disabled]="!registerForm.valid"
-            >NEXT</ion-button
-          >
-        </ion-col>
-      </ion-row>
+      <div class="bottom-buttons">
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-button
+              type="submit"
+              class="register-button"
+              color="light"
+              expand="block"
+              [disabled]="!registerForm.valid"
+              >NEXT</ion-button
+            >
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col class="ion-text-center">
-          <span class="go-to-login">Already have an account?</span>
-          <span class="login-btn" routerLink="/login">Login</span>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <span class="go-to-login">Already have an account?</span>
+            <span class="login-btn" routerLink="/login">Login</span>
+          </ion-col>
+        </ion-row>
+      </div>
     </form>
   </ion-grid>
 </ion-content>

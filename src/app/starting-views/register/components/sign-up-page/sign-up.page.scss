@@ -38,6 +38,14 @@
   margin-left: 0.3rem;
 }
 
+.bottom-buttons {
+  position: fixed;
+  display: block;
+  bottom: 3rem;
+  width: 100%;
+  padding-right: 4rem;
+}
+
 ion-content {
   --ion-background-color: #005b74;
 }

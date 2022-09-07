@@ -20,7 +20,7 @@
 }
 
 .height-select-panel {
-  margin-top: calc(30px + (100vh - 10vh - 140px - 80px) / 2);
+  margin-top: calc((90vh - 140px - 80px) / 2);
   transform: translate(0, -50%);
 }
 
@@ -60,7 +60,7 @@
 
 .arrow-slider {
   -webkit-appearance: slider-vertical;
-  height: 38vh;
+  height: 35vh;
   margin-top: 0.5rem;
 }
 
