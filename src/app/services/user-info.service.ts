@@ -4,6 +4,13 @@ import { doc, Firestore, getDoc, updateDoc } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
 import { DailyDataService } from './daily-data.service';
 import { UserDataService } from './user-data.service';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from '@angular/fire/storage';
+import { uploadString } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +45,32 @@ export class UserInfoService {
   async uploadUserDietData(data) {
     const user = this.auth.currentUser;
     const userDocRef = doc(this.firestore, `diet-data/${user.uid}`);
+    setDoc(userDocRef, data);
+  }
+
+  // creates a new entry containing the numbers for kcal, protein, fat, carbs etc.
+  async uploadExerciseCompletion() {
+    const user = this.auth.currentUser;
+    const userDocRef = doc(this.firestore, `exercise-completion/${user.uid}`);
+    let data = {};
+    data = {
+      abs: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ],
+      arms: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ],
+      legs: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ],
+      chest: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+      ],
+    };
     setDoc(userDocRef, data);
   }
 
@@ -79,5 +112,31 @@ export class UserInfoService {
       totalFats: result.totalFats,
       BMR: result.BMR,
     });
+  }
+
+  uploadProfilePicture(file) {
+    const user = this.auth.currentUser;
+    const storage = getStorage();
+    const imageRef = ref(storage, `profile-pictures/${user.uid}.jpg`);
+
+    uploadBytes(imageRef, file).then((snapshot) => {
+      console.log('uploaded successfully');
+    });
+  }
+
+  async getProfilePicture() {
+    const user = this.auth.currentUser;
+    const storage = getStorage();
+    const imageRef = ref(storage, `profile-pictures/${user.uid}.jpg`);
+    let imageURL = null;
+    await getDownloadURL(imageRef)
+      .then((url) => {
+        imageURL = url;
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+
+    return imageURL;
   }
 }

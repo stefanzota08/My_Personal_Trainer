@@ -19,19 +19,16 @@
   margin-bottom: 2rem;
 }
 
-.add-rest,
 .skip-rest {
   color: #efefef;
   font-family: Roboto-Medium;
   font-size: 25px;
 }
 
-.add-rest {
-  text-align: end;
-}
-
 .skip-rest {
-  text-align: start;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .next-exercise {
@@ -93,7 +90,8 @@ ion-card {
 }
 
 .timer-ui {
-  margin-top: calc((100% - 7rem) / 2);
+  margin-top: calc((100vh - 7rem) / 2);
+  transform: translate(0%, -50%);
 }
 
 .gif-image {

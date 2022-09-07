@@ -1,6 +1,11 @@
 <ion-content [fullscreen]="true">
-  <div class="profile-pic-wrapper">
-    <ion-icon class="profile-pic-icon" name="camera-outline"></ion-icon>
+  <div class="profile-pic-wrapper" (click)="selectimageOptions()">
+    <ion-icon
+      *ngIf="!imageurl"
+      class="profile-pic-icon"
+      name="camera-outline"
+    ></ion-icon>
+    <img class="profile-pic-image" *ngIf="imageurl" [src]="imageurl" alt="" />
   </div>
   <div class="user-info-wrapper">
     <span class="user-name"

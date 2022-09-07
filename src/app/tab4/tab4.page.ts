@@ -5,12 +5,18 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import {
+  ActionSheetController,
+  AlertController,
+  LoadingController,
+} from '@ionic/angular';
 import { Chart, registerables } from 'chart.js';
 import { ChartDataService } from '../services/chart-data.service';
 import { UserInfoService } from '../services/user-info.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
@@ -36,24 +42,125 @@ export class Tab4Page implements OnInit, AfterViewInit {
     'heightInCm',
     'fatPercentage',
   ];
-  selectedPhoto;
+  imageurl: any = null;
 
   constructor(
+    private readonly loadingController: LoadingController,
     private readonly userInfoService: UserInfoService,
     private readonly alertController: AlertController,
     private readonly chartDataService: ChartDataService,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private actionsheet: ActionSheetController
   ) {}
 
   ngOnInit() {
+    this.initializeInfo();
     Chart.register(...registerables);
-    this.getUserInfo();
   }
 
   ngAfterViewInit(): void {
     this.lineChartMethod();
   }
+
+  async loadProfilePicture() {
+    const profilePicture = await this.userInfoService.getProfilePicture();
+    console.log(profilePicture);
+    this.imageurl = profilePicture;
+  }
+
+  async initializeInfo() {
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
+    await loading.present();
+
+    await this.getUserInfo();
+
+    await this.loadProfilePicture();
+
+    await loading.dismiss();
+  }
+
+  async selectimageOptions() {
+    console.log('merge');
+    const actionsheet = await this.actionsheet.create({
+      header: 'Select image Source',
+      buttons: [
+        {
+          text: 'Load from Gallery',
+          handler: () => {
+            this.pickImagesFromLibrary();
+            console.log('Image Selected from Gallery');
+          },
+        },
+        {
+          text: 'Select Camera',
+          handler: () => {
+            this.takePhoto();
+            console.log('Camera Selected');
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+      ],
+    });
+    await actionsheet.present();
+  }
+
+  async takePhoto() {
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera,
+      quality: 100,
+    });
+
+    fetch(capturedPhoto.dataUrl)
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log(blob);
+        this.userInfoService.uploadProfilePicture(blob);
+      });
+    console.log(capturedPhoto.dataUrl);
+    this.imageurl = capturedPhoto.dataUrl;
+  }
+
+  async pickImagesFromLibrary() {
+    const selectedImage = await Camera.pickImages({
+      quality: 100,
+      limit: 1,
+    });
+
+    const profilePicture = selectedImage.photos[0];
+    fetch(profilePicture.webPath)
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log(blob);
+        this.userInfoService.uploadProfilePicture(blob);
+      });
+
+    this.imageurl = profilePicture;
+    this.getBase64FromUrl(profilePicture.webPath).then(
+      (data) => (this.imageurl = data)
+    );
+  }
+
+  getBase64FromUrl = async (url) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        resolve(base64data);
+      };
+    });
+  };
 
   async lineChartMethod() {
     await this.getChartData();

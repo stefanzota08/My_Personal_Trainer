@@ -34,6 +34,7 @@ export class FullWorkoutFlowPage implements OnInit {
   seconds: number = null;
   todayWorkout = null;
   bodyPart = null;
+  dayIndex = null;
   exerciseIndex: number = 0;
   completedExercises = [];
   totalWorkoutTime: string = '';
@@ -50,6 +51,7 @@ export class FullWorkoutFlowPage implements OnInit {
     this.workoutState.currentWorkoutData.subscribe((data) => {
       this.todayWorkout = data.todayWorkout;
       this.bodyPart = data.bodyPart;
+      this.dayIndex = data.dayIndex;
     });
     this.timerIntervalFullWorkout = setInterval(() => {
       this.nrOfSecondsFullWorkout += 1;
@@ -140,6 +142,7 @@ export class FullWorkoutFlowPage implements OnInit {
     };
 
     this.workoutDataService.addWorkout(workoutInformation);
+    this.workoutDataService.setDayAsCompleted(this.dayIndex, this.bodyPart);
   }
 
   skipExercise() {

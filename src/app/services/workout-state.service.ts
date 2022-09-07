@@ -8,6 +8,7 @@ export class WorkoutStateService {
   private workoutData = new BehaviorSubject({
     todayWorkout: null,
     bodyPart: null,
+    dayIndex: null,
   });
 
   currentWorkoutData = this.workoutData.asObservable();

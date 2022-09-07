@@ -288,369 +288,489 @@ export const exercises = {
 export const dailyWorkouts = {
   abs: [
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
   ],
   legs: [
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [6, 7, 8, 9, 10],
     },
   ],
   arms: [
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4, 5, 6], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [7, 8, 9, 10, 11, 12, 13],
     },
   ],
   chest: [
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
     {
+      completed: false,
       exercises: [0, 1, 2, 3, 4], // array of indexes, each number is the index of the exercise in the array of exercises
     },
     {
+      completed: false,
       exercises: [5, 6, 7, 8, 9],
     },
   ],

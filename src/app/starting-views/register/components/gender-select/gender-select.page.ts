@@ -9,13 +9,18 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class GenderSelectPage implements OnInit {
   selectedGender: boolean = false;
+  firstName: string = null;
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly userDataService: UserDataService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userDataService.currentUserData.subscribe((data) => {
+      this.firstName = data.firstName;
+    });
+  }
 
   setSelectedGender() {
     this.userDataService.updateUserData({

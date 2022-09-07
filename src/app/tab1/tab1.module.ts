@@ -6,6 +6,7 @@ import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     Tab1PageRoutingModule,
     RoundProgressModule,
   ],
-  declarations: [Tab1Page],
+  declarations: [Tab1Page, TruncatePipe],
 })
 export class Tab1PageModule {}

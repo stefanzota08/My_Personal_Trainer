@@ -3,7 +3,7 @@
   text-align: center;
   padding-top: 2rem;
   font-size: 30px;
-  font-family: Teko;
+  font-family: Teko-Medium;
   text-transform: uppercase;
 }
 
@@ -119,6 +119,21 @@ ion-card {
 
   & .workout-duration {
     font-size: 12px;
+  }
+}
+
+.day-card-completed {
+  background-color: #005b74;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.2rem;
+  & .icon {
+    font-size: 26px;
+    color: white;
   }
 }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { take } from 'rxjs/operators';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-choose-password',
@@ -15,6 +16,7 @@ export class ChoosePasswordPage implements OnInit {
   passwordsMatch: boolean = true;
   userData = null;
   constructor(
+    private readonly loadingController: LoadingController,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly fb: FormBuilder,
@@ -56,10 +58,18 @@ export class ChoosePasswordPage implements OnInit {
   }
 
   async register() {
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
+    await loading.present();
+
     const user = await this.authService.register({
       email: this.userData.email,
       password: this.userData.password,
     });
+    await loading.dismiss();
 
     if (user) {
       this.router.navigate(['../choose-password'], {

@@ -97,9 +97,10 @@
         <div style="height: 100px !important">
           <ion-list>
             <ng-container
-              *ngFor="let item of beveragesList | filter:searchKeyword"
+              *ngIf="(beveragesList | filter:searchKeyword) as result"
             >
               <ion-card
+                *ngFor="let item of result"
                 (click)="enterQuantityAlert(item)"
                 style="background-color: #efefef"
               >
@@ -110,6 +111,17 @@
                   >{{ item.kcal + ' kcal/100ml' }}</ion-card-content
                 >
               </ion-card>
+              <ng-container *ngIf="result.length === 0">
+                <span style="display: block; text-align: center"
+                  >Didn't find what you're looking for?</span
+                >
+                <ion-button
+                  style="margin-left: 50%; transform: translate(-50%)"
+                  (click)="addItemAlert('BEVERAGES')"
+                >
+                  Add new item to the list
+                </ion-button>
+              </ng-container>
             </ng-container>
           </ion-list>
         </div>

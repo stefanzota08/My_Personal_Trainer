@@ -55,7 +55,7 @@
   <!-- rest timer modal -->
   <ion-modal [isOpen]="isTimerModalOpen" [animated]="false">
     <ng-template>
-      <ion-content>
+      <ion-content scroll-y="false">
         <div class="timer-ui">
           <ion-row class="modal-title">
             <ion-col size="12">
@@ -82,26 +82,13 @@
               ></round-progress>
             </ion-col>
           </ion-row>
-          <ion-row>
-            <ion-col size="5" class="ion-no-margin">
-              <p class="add-rest" (click)="addRestSeconds()">+20s</p>
-            </ion-col>
-            <ion-col size="2" class="ion-no-margin">
-              <p class="split-bar"></p>
-            </ion-col>
-            <ion-col size="5" class="ion-no-margin" style="display: flex">
+          <ion-row style="display: flex">
+            <ion-col size="12" class="ion-no-margin">
               <p class="skip-rest" (click)="closeTimerModal()">Skip</p>
             </ion-col>
           </ion-row>
         </div>
-        <!-- <ion-button (click)="closeTimerModal()">Close Modal</ion-button> -->
         <div class="next-exercise">
-          <!-- <p style="position: absolute">
-            NEXT:
-            <span
-              >Exercise {{exerciseIndex + 1 + '/' + todayWorkout.length}}</span
-            >
-          </p> -->
           <div style="display: flex">
             <img
               class="next-gif-image"

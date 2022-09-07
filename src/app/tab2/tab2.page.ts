@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { range } from 'rxjs';
 import { WorkoutDataService } from '../services/workout-data.service';
 import { WorkoutStateService } from '../services/workout-state.service';
+import { OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
   isModalOpen: boolean = false;
   isDailyRoutineSummaryOpen: boolean = false;
   exercisesList: any = null;
   dailyWorkouts: any = null;
+  dailyCompletion: any = null;
   displayedTitle: string = null;
   selectedTab: string = null;
   selectedDay = null;
@@ -24,13 +26,31 @@ export class Tab2Page {
     22, 23, 24, 25, 26, 27, 28, 29, 30,
   ];
   constructor(
+    private readonly loadingController: LoadingController,
     private readonly workoutDataService: WorkoutDataService,
     private readonly router: Router,
     private readonly workoutState: WorkoutStateService
   ) {
     // this.workoutDataService.addItemsToDatabase();
-    this.getExercisesList();
-    this.getDailyWorkouts();
+  }
+
+  ngOnInit(): void {
+    this.loadAllData();
+  }
+
+  async loadAllData() {
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
+    await loading.present();
+
+    await this.getExercisesList();
+    await this.getDailyWorkouts();
+    await this.getExerciseCompletion();
+
+    await loading.dismiss();
   }
 
   openModal(bodyPart) {
@@ -92,11 +112,30 @@ export class Tab2Page {
     console.log(this.dailyWorkouts);
   }
 
-  startFullWorkoutFlow() {
-    this.isModalOpen = false;
-    this.isDailyRoutineSummaryOpen = false;
-    this.workoutState.updateWorkoutData({ todayWorkout: this.todayWorkout });
-    this.workoutState.updateWorkoutData({ bodyPart: this.selectedTab });
-    this.router.navigateByUrl('/full-workout-flow', { replaceUrl: true });
+  async getExerciseCompletion() {
+    this.dailyCompletion =
+      await this.workoutDataService.getExerciseCompletion();
+    console.log(this.dailyCompletion);
+  }
+
+  async startFullWorkoutFlow() {
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
+    await loading.present();
+
+    await this.closeSelectDayModal();
+    await this.closeDailyRoutineModal();
+    await this.workoutState.updateWorkoutData({
+      todayWorkout: this.todayWorkout,
+      bodyPart: this.selectedTab,
+      dayIndex: this.selectedDay - 1,
+    });
+    await this.workoutState.updateWorkoutData({ bodyPart: this.selectedTab });
+    await loading.dismiss();
+
+    await this.router.navigateByUrl('/full-workout-flow', { replaceUrl: true });
   }
 }

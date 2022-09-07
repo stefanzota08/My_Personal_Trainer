@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonModal } from '@ionic/angular';
+import { AlertController, IonModal, LoadingController } from '@ionic/angular';
 import { FoodService } from '../services/food.service';
 
 @Component({
@@ -19,13 +19,28 @@ export class Tab3Page implements OnInit {
   snackList = null;
 
   constructor(
+    private readonly loadingController: LoadingController,
     private readonly alertController: AlertController,
     private readonly foodService: FoodService
   ) {}
+
   ngOnInit() {
-    this.getFoodList();
-    this.getBeveragesList();
-    this.getSnackList();
+    this.loadAllData();
+  }
+
+  async loadAllData() {
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
+    await loading.present();
+
+    await this.getFoodList();
+    await this.getBeveragesList();
+    await this.getSnackList();
+
+    await loading.dismiss();
   }
 
   setFoodModalOpen(isOpen: boolean) {
@@ -108,7 +123,7 @@ export class Tab3Page implements OnInit {
           role: 'confirm',
           handler: (inputData) =>
             this.addItemToTheList(type, {
-              name: parseInt(inputData[0]),
+              name: inputData[0],
               kcal: parseInt(inputData[1]),
               protein: parseInt(inputData[2]),
               carbs: parseInt(inputData[3]),

@@ -47,6 +47,8 @@ export class MeasurementsDonePage implements OnInit {
         weight: Math.round(data.weight),
       });
 
+      this.userInfoService.uploadExerciseCompletion();
+
       this.dailyDataService.uploadCurrentDateWithData({
         BMR,
         totalKcal,

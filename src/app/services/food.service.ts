@@ -15,22 +15,46 @@ export class FoodService {
   ) {}
 
   async getFoodList() {
+    const user = this.auth.currentUser;
     const docRef = doc(this.firestore, 'food-list/food-list');
     const result = await getDoc(docRef);
     let foodList = result.data();
     foodList = Object.keys(foodList).map((key) => {
       return foodList[key];
     });
+
+    const personalDoc = doc(this.firestore, `food-list/${user.uid}`);
+    try {
+      const personalResult = await getDoc(personalDoc);
+      let personalList = personalResult.data();
+      personalList = Object.keys(personalList).map((key) => {
+        return personalList[key];
+      });
+      foodList = foodList.concat(personalList);
+    } catch {}
+
     return foodList;
   }
 
   async getBeveragesList() {
+    const user = this.auth.currentUser;
     const docRef = doc(this.firestore, 'beverages-list/beverages-list');
     const result = await getDoc(docRef);
     let beveragesList = result.data();
     beveragesList = Object.keys(beveragesList).map((key) => {
       return beveragesList[key];
     });
+
+    const personalDoc = doc(this.firestore, `beverages-list/${user.uid}`);
+    try {
+      const personalResult = await getDoc(personalDoc);
+      let personalList = personalResult.data();
+      personalList = Object.keys(personalList).map((key) => {
+        return personalList[key];
+      });
+      beveragesList = beveragesList.concat(personalList);
+    } catch {}
+
     return beveragesList;
   }
 
@@ -96,7 +120,12 @@ export class FoodService {
       meals: meals,
       workouts: workouts,
     };
-    updateDoc(docRef, todayData);
+    try {
+      await updateDoc(docRef, todayData);
+      return true;
+    } catch (error) {
+      return error;
+    }
   }
 
   // exactly the same as addMeal() but we ADD instead of SUBSTRACT the values and DELETE the meal from the meals array
@@ -160,7 +189,19 @@ export class FoodService {
 
   async addNewItemToList(type: string, data: any) {
     const user = this.auth.currentUser;
-    const userDocRef = doc(this.firestore, `${type}/${user.uid}`);
+    let collection = '';
+    switch (type) {
+      case 'FOOD':
+        collection = 'food-list';
+        break;
+      case 'BEVERAGES':
+        collection = 'beverages-list';
+        break;
+      case 'SNACKS':
+        collection = 'snacks-supplements';
+        break;
+    }
+    const userDocRef = doc(this.firestore, `${collection}/${user.uid}`);
 
     let newItem = {};
     newItem[data.name] = { ...data };

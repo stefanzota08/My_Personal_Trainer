@@ -12,9 +12,10 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { Camera } from '@ionic-native/camera/ngx';
+import { EstimateTimePipe } from './pipes/estimate-time.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EstimateTimePipe],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

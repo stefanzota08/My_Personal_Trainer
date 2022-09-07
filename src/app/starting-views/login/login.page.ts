@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  loginFailed: boolean = false;
   constructor(
     private readonly fb: FormBuilder,
     private authService: AuthService,
@@ -33,27 +34,22 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // async register() {
-  //   const user = await this.authService.register(this.loginForm.value);
-
-  //   if (user) {
-  //     this.router.navigateByUrl('/tabs', { replaceUrl: true });
-  //   } else {
-  //     console.log('Register failed!');
-  //   }
-  // }
-
   async login() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      showBackdrop: false,
+      cssClass: 'custom-loading',
+    });
+
     await loading.present();
 
     const user = await this.authService.login(this.loginForm.value);
     await loading.dismiss();
 
     if (user) {
+      this.loginFailed = false;
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
     } else {
-      console.log('Login failed!');
+      this.loginFailed = true;
     }
   }
 }

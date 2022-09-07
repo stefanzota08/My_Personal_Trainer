@@ -145,7 +145,7 @@
         <ion-card *ngIf="meals && meals.length > 0">
           <ion-list>
             <ion-item *ngFor="let meal of meals">
-              <label>{{meal.name}}</label>
+              <label>{{meal.name | limitTo:'22'}}</label>
               <label style="position: absolute; right: 2rem"
                 >{{meal.kcal + ' kcal'}}</label
               >

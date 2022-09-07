@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true">
   <!-- workout page -->
   <span class="title">Select custom workout for today</span>
+
   <div class="cards">
     <!-- legs card -->
     <ion-card class="workout-card" id="legs" (click)="openModal('legs')">
@@ -44,14 +45,31 @@
             <ion-row>
               <ng-container *ngFor="let i of numberOfDays">
                 <ion-col size="6">
-                  <div class="day-card">
-                    <span class="day-number" (click)="openDailyRoutineModal(i)"
-                      >Day {{i}}</span
+                  <div
+                    [class]="dailyCompletion[selectedTab][i-1] === 1 ? 'day-card-completed' : 'day-card'"
+                  >
+                    <ng-container
+                      *ngIf="dailyCompletion[selectedTab][i-1] === 0"
                     >
-                    <div style="display: flex; align-items: center">
-                      <ion-icon name="time-outline"></ion-icon>
-                      <span class="workout-duration">11 min</span>
-                    </div>
+                      <span
+                        class="day-number"
+                        (click)="openDailyRoutineModal(i)"
+                        >Day {{i}}</span
+                      >
+                      <div style="display: flex; align-items: center">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span class="workout-duration">11 min</span>
+                      </div>
+                    </ng-container>
+
+                    <ng-container
+                      *ngIf="dailyCompletion[selectedTab][i-1] === 1"
+                    >
+                      <ion-icon
+                        class="icon"
+                        name="checkmark-circle-outline"
+                      ></ion-icon>
+                    </ng-container>
                   </div>
                 </ion-col>
               </ng-container>

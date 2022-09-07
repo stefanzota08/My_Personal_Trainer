@@ -46,6 +46,16 @@ export class WorkoutDataService {
     return result.data();
   }
 
+  async getExerciseCompletion() {
+    const user = this.auth.currentUser;
+    const dailyWorkoutsRef = doc(
+      this.firestore,
+      `exercise-completion/${user.uid}`
+    );
+    const result = await getDoc(dailyWorkoutsRef);
+    return result.data();
+  }
+
   async addWorkout(item) {
     const currentDate = this.dailyDataService.getCurrentDate();
     const user = this.auth.currentUser;
@@ -143,5 +153,18 @@ export class WorkoutDataService {
       workouts: workouts,
     };
     updateDoc(docRef, todayData);
+  }
+
+  async setDayAsCompleted(dayNumber, bodyPart) {
+    const user = this.auth.currentUser;
+    const dailyWorkoutsRef = doc(
+      this.firestore,
+      `exercise-completion/${user.uid}`
+    );
+    const result = await getDoc(dailyWorkoutsRef);
+    let dailyWorkoutInfo = result.data();
+    dailyWorkoutInfo[bodyPart][dayNumber] = 1;
+    console.log(dailyWorkoutInfo);
+    updateDoc(dailyWorkoutsRef, dailyWorkoutInfo);
   }
 }

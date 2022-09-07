@@ -36,6 +36,9 @@
             *ngIf="(password.dirty || password.touched) && password.errors"
             >*Password must contain at least 6 characters</span
           >
+          <span class="input-error" *ngIf="loginFailed"
+            >Wrong email or password</span
+          >
         </ion-col>
       </ion-row>
 
